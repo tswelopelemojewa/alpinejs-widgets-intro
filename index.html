@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine JS</title>
+
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+    rel="stylesheet"
+    />
+
+</head>
+<body>
+    <div class="container text-center">
+        <br>
+        <div class="row d-flex justify-content-center">
+            <!-- x-text -->
+            <div class="col-md-6" x-data="{title: 'hello buddy mojewa'}">
+                <p x-text="title"></p>
+
+                <button type="button" class="btn btn-success btn-rounded" x-on:click='title="I am the best!!"'>Click me</button>
+                <button type="button" class="btn btn-success btn-rounded" @click="title='i really am the best'">Click me too</button>
+
+            </div>
+
+            <!-- x-on // @ -->
+            <div class="col-md-4 text-center" x-data="{count: 0}">
+                <p x-text="count"></p>
+                <button type="button" class="btn btn-success btn-rounded" @click="if(count < 15) count++">Count Up</button>
+                <button type="button" class="btn btn-danger btn-rounded" @click="count = 0">Reset</button>
+                <button type="button" class="btn btn-success btn-rounded" @click="if(count > 0) count--">Count Down</button>
+            </div>
+        </div>
+        
+        <br>
+        <!-- x-init -->
+        <div class="alert-success" x-data="{ countdown: 60}"
+            x-init="setInterval(function(){
+                countdown--;
+            }, 1000)">
+
+            <h1 x-text="countdown"></h1>
+        </div>
+
+        <!-- x-show -->
+        <div class="d-grid gap-2" x-data="{ show: false }">
+            <button class="btn btn-info" x-on:click="show=!show">show</button>
+            <div class="alert-secondary" x-show="show">Hello From the other side!!!</div>
+            <div class="alert-secondary" x-show.transition="show">Hello from the outside!!!</div>
+            <br>
+        </div>
+
+        <!-- x-model -->
+        <div x-data="{ title: 'Tswelopele is Awesome'}">
+            <p x-text="title"></p>
+            <input class="form-control-lg" type="text" x-model="title" />
+        </div>
+
+        <br>
+
+        <!-- x-html -->
+        <div x-data="{ code: '<p>Dynamic Paragraph</p>' }">
+            <div x-html="code"></div>
+        </div>
+
+        <!-- x-ref -->
+        <div x-data="{ code: '<p>Dynamic Paragraph</p>' }">
+            <div class="row justify-content-center"  x-ref="sentence">I am a sentence</div>
+            <button class="btn btn-info btn-lg" @click="$refs.sentence.innerText='I just changed'">Change sentence</button>
+            <br>
+        </div>
+        <br>
+
+        <!-- x-if -->
+        <div x-data="{ color: 'blue' }">
+            <template x-if="color=='blue'">
+                <p>The color is blue</p>
+            </template>
+            <template x-if="color=='green'">
+                <p>The color is Green</p>
+            </template>
+
+            <button class="btn btn-outline-danger btn-rounded" x-on:click="color = 'green'">Change color</button>
+        </div>
+        <br>
+
+        <!-- x-for -->
+        
+        <h3>Groceries</h3>
+        <div class="row d-flex justify-content-center" x-data="{groceries: ['milk', 'Eggs', 'Cheese']}">
+            <div class="col-md-6">
+                <ul class="list-group list-group-light">
+                    <template x-for="i in groceries">
+                        <li class="list-group-item" x-text="i"></li>
+                    </template>
+                </ul>
+            </div>
+
+        </div>
+        <br>
+
+        <h2>Introduction to asynchronous functions</h2>
+        <h5>SetTImeOut</h5>
+        <div x-data="{ countdown: 5 }"
+            x-init="setInterval(function(){
+                        countdown--;
+                    }, 1000);
+                    ">
+                
+                    
+                    <h1 x-text="countdown"></h1>
+
+        </div>
+        
+
+    </div>
+
+    <script src="index.js" defer></script>
+    <!-- <script src="/js/alpine.js" defer></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+    <!-- MDB -->
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
+    ></script>
+</body>
+</html>
